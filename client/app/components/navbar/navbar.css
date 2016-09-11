@@ -10,6 +10,24 @@
   background-color: #607d8b;
 }
 
+a {
+  color: #428bca;
+}
+
+.page-header {
+    margin: 0px 0 20px;
+}
+
+.label {
+    padding: .1em .4em .0em;
+    font-size: 95%;
+}
+
+.input-group-addon {
+    background-color: white;
+    border: none;
+}
+
 .navbar-brandi {
   float: left;
   padding: 0 15px;
@@ -37,8 +55,18 @@
     font-weight: bold;
 }
 .navbar-inverse .navbar-nav > li > a:hover {
-  background-color: black;
+  background-color: hsl(200, 18%, 20%);
 }
+
+.navbar-inverse .navbar-nav > .active > a:focus {
+    background-color: hsl(200, 18%, 20%);
+}
+
+.navbar-inverse .navbar-nav > .active > a {
+    background-color: hsl(200, 18%, 20%);
+}
+
+
 @media (min-width: 768px) {
   .navbar {
     border-radius: 0px;
