@@ -4,6 +4,12 @@
 .navbar-inverse .navbar-logo {
   width: 140px;
 }
+
+.navbar-inverse {
+  border: none;
+  background-color: #607d8b;
+}
+
 .navbar-brandi {
   float: left;
   padding: 0 15px;
@@ -12,9 +18,29 @@
   height: 50px;
 }
 .gravatar-image {
-  margin-top: 5px;
-  margin-right: 5px;
-  margin-left: 5px;
-  height: 40px;
-  width: 40px;
+  margin-right: 10px;
+  margin-left: 10px;
+  height: 30px;
+  width: 30px;
+}
+.navbar-text {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.navbar-inverse .navbar-nav > li > a {
+    color: hsl(207, 90%, 95%);
+    font-weight: bold;
+}
+.navbar-inverse .navbar-text {
+    margin-top:0.7em;
+    color: hsl(207, 90%, 95%);
+    font-weight: bold;
+}
+.navbar-inverse .navbar-nav > li > a:hover {
+  background-color: black;
+}
+@media (min-width: 768px) {
+  .navbar {
+    border-radius: 0px;
+  }
 }
