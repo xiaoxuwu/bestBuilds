@@ -22,7 +22,7 @@
     <div class="navbar-collapse collapse" ng-class="{'in':!navCollapsed}">
 
       <ul class="nav navbar-nav navbar-left">
-        <li ng-show="isLoggedIn()" ng-class="{active: isActive('/')}">
+        <li ng-show="true" ng-class="{active: isActive('/')}">
          <a ui-sref="main">Home</a></li>
 
         <li ng-show="isAdmin()" ng-class="{active: isActive('/admin')}">
@@ -30,21 +30,22 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right" >
+
+        <li ng-show="isLoggedIn()" ng-class="{active: isActive('/mylooks')}">
+          <a ui-sref="mylooks" id="nav-internal">My Builds</a>
+        </li>
+
         <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/signup')}">
         <a ui-sref="signup" id="nav-internal">Sign up</a></li>
-
-        <li ng-hide="!isLoggedIn()" ng-class="{active: isActive('/mybuilds')}">
-        <a ui-sref="mybuilds" id="nav-internal">My Builds</a></li>
 
         <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/login')}">
         <a ui-sref="login" id="nav-internal">Login</a></li>
 
-        <li ng-show="isLoggedIn()">
-        <p class="navbar-text"><img ng-src="{{ getCurrentUser().gravatar }}"
-        alt = "gravatar image" class="gravatar-image" />{{ getCurrentUser().name }}</p> </li>
+        <li ng-show="isLoggedIn()" ng-class="{active: isActive('/profile')}">
+        <a ui-sref="profile" id="profile_icon"><img ui-sref="profile" class="gravatar-image" ng-src="{{ getCurrentUser().gravatar }}"></a></li>
 
         <li ng-show="isLoggedIn()" ng-class="{active: isActive('/settings')}">
-        <a href="/settings"><span class="glyphicon glyphicon-cog"></span></a></li>
+        <a ui-sref="settings"><span class="glyphicon glyphicon-cog"></span></a></li>
 
         <li ng-show="isLoggedIn()" ng-class="{active: isActive('/logout')}">
         <a href="" ng-click="logout()">Logout</a></li>
@@ -52,4 +53,3 @@
       </ul>
     </div>
   </div>
-</div>

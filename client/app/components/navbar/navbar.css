@@ -2,18 +2,21 @@
   color: #fff;
 }
 .navbar-inverse .navbar-logo {
-  width: 140px;
+  width: 220px;
 }
 
 .navbar-inverse {
   border: none;
-  background-color: #607d8b;
+  background-color: hsl(200, 18%, 80%);
 }
 
 a {
   color: #428bca;
 }
-
+#profile_icon {
+  padding: 0;
+  padding-bottom: 10px;
+}
 .page-header {
     margin: 0px 0 20px;
 }
@@ -36,6 +39,7 @@ a {
   height: 50px;
 }
 .gravatar-image {
+  margin-top: 10px;
   margin-right: 10px;
   margin-left: 10px;
   height: 30px;
@@ -46,24 +50,24 @@ a {
   margin-bottom: 0;
 }
 .navbar-inverse .navbar-nav > li > a {
-    color: hsl(207, 90%, 95%);
+    color: hsl(200, 18%, 20%);
     font-weight: bold;
 }
 .navbar-inverse .navbar-text {
     margin-top:0.7em;
-    color: hsl(207, 90%, 95%);
+    color: hsl(200, 18%, 20%);
     font-weight: bold;
 }
 .navbar-inverse .navbar-nav > li > a:hover {
-  background-color: hsl(200, 18%, 20%);
+  background-color: hsl(200, 18%, 60%);
 }
 
 .navbar-inverse .navbar-nav > .active > a:focus {
-    background-color: hsl(200, 18%, 20%);
+    background-color: hsl(200, 18%, 60%);
 }
 
 .navbar-inverse .navbar-nav > .active > a {
-    background-color: hsl(200, 18%, 20%);
+    background-color: hsl(200, 18%, 60%);
 }
 
 

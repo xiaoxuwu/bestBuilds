@@ -33,21 +33,24 @@ module.exports = function(app) {
   }));
   app.use(bodyParser.json());
   app.use(methodOverride());
+
   app.use(multer({
-    dest:"../client/assets/images/uploads",
+    dest: '../client/assets/images/uploads/',
     rename: function(fieldname, filename) {
       return filename + Date.now();
     },
     onFileUploadStart: function(file) {
-      console.log(file.originalname + 'is starting...');
+      console.log(file.originalname + ' is starting...');
     },
     onFileUploadComplete: function(file, req, res) {
+      console.log(file.fieldname + ' uploaded to ' + file.path);
       var fileimage = file.name;
       req.middlewareStorage = {
         fileimage: fileimage
       }
     }
-  }))
+  }));
+
   app.use(cookieParser());
   app.use(passport.initialize());
 

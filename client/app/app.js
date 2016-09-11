@@ -11,7 +11,8 @@
       'ngFileUpload',
       'angularGrid',
       'angularMoment',
-      'mgcrea.ngStrap'
+      'mgcrea.ngStrap',
+      'infinite-scroll'
     ])
     .config(config)
     .run(run)
@@ -23,7 +24,7 @@
 
   function config($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider.otherwise('/');
-    $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(false);
     $httpProvider.interceptors.push('authInterceptor');
   }
 
