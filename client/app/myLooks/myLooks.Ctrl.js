@@ -5,9 +5,9 @@
     .module('app')
     .controller('MyLooksCtrl', MyLooksCtrl);
 
-  MyLooksCtrl.$inject = ['$scope', '$modal', '$state', '$alert', 'looksAPI', 'Auth'];
+  MyLooksCtrl.$inject = ['$scope', '$modal', '$state', '$alert', 'looksAPI', 'Auth', '$document'];
 
-  function MyLooksCtrl($scope, $modal, $state, $alert, looksAPI, Auth) {
+  function MyLooksCtrl($scope, $modal, $state, $alert, looksAPI, Auth, $document) {
 
     $scope.user = Auth.getCurrentUser();
     var userEmail = $scope.user.email;
@@ -99,5 +99,9 @@
           console.log('failed to delete build' + err);
         });
     }
+
+    $document.ready(function(){
+
+    })
   }
 })();
