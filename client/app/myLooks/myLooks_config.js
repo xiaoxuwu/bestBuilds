@@ -11,7 +11,7 @@
       $stateProvider
         .state('mylooks', {
           url: '/mylooks',
-          templateUrl: '/app/mylooks/myLooks.html',
+          templateUrl: 'app/mylooks/myLooks.html',
           controller: 'MyLooksCtrl',
           authenticate: true
         });
