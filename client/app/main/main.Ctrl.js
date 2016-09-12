@@ -76,27 +76,27 @@
       console.log('looks found ');
       console.log(data);
       // $scope.looks = data.data;
-      $scope.allData = data.data;
-      $scope.nextPage();
+      $scope.looks = data.data;
+      //$scope.nextPage();
       $scope.busy = false;
     })
     .catch(function(err) {
       console.log('failed to get looks ' + err);
     });
 
-    $scope.nextPage = function() {
-      var lookLength = $scope.looks.length;
-      if($scope.busy) {
-        return;
-      }
-      $scope.busy = true;
-      $scope.looks = $scope.looks.concat($scope.allData.splice(page * step, step));
-      page++;
-      $scope.busy = false;
-      if($scope.looks.length === 0) {
-        $scope.noMoreData = true;
-      }
-    };
+    // $scope.nextPage = function() {
+    //   var lookLength = $scope.looks.length;
+    //   if($scope.busy) {
+    //     return;
+    //   }
+    //   $scope.busy = true;
+    //   $scope.looks = $scope.looks.concat($scope.allData.splice(page * step, step));
+    //   page++;
+    //   $scope.busy = false;
+    //   if($scope.looks.length === 0) {
+    //     $scope.noMoreData = true;
+    //   }
+    // };
 
     $scope.showUploadForm = function() {
       $scope.uploadLookForm = true;

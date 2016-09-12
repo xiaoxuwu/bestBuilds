@@ -26,6 +26,7 @@
           </div>
 
   <!-- Angular Grid -->
+  <div class="container" infinite-scroll="nextPage()" infinite-scroll-disabled="busy || noMoreData" infinite-scroll-distance="0.5">
     <ul class="dynamic-grid angular-grid"
           angular-grid="looks"
           grid-width="275"
@@ -62,4 +63,6 @@
         </div>
       </li>
     </ul>
+    <div ng-show='busy'>Loading data...</div>
+  </div>
 </div>
