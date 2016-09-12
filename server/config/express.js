@@ -9,7 +9,6 @@ var favicon = require('serve-favicon');
 var morgan = require('morgan');
 var compression = require('compression');
 var bodyParser = require('body-parser');
-var multer = require('multer');
 var methodOverride = require('method-override');
 var cookieParser = require('cookie-parser');
 var errorHandler = require('errorhandler');
@@ -33,7 +32,7 @@ module.exports = function(app) {
   }));
   app.use(bodyParser.json());
   app.use(methodOverride());
-
+  /*
   app.use(multer({
     dest: '../client/assets/images/uploads/',
     rename: function(fieldname, filename) {
@@ -50,7 +49,7 @@ module.exports = function(app) {
       }
     }
   }));
-
+  */
   app.use(cookieParser());
   app.use(passport.initialize());
 
