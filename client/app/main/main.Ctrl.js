@@ -170,7 +170,7 @@
           alertFail.show(); // for our fail alert
         });
     }
-
+    /* NOT SUPPORTED ON HEROKU
     $scope.uploadPic = function(file) {
       Upload.upload({
         url: '/api/look/upload',
@@ -201,6 +201,6 @@
         console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
       });
     }
-
+    */
   }
 })();
