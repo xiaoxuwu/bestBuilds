@@ -99,6 +99,5 @@
           console.log('failed to delete build' + err);
         });
     }
-
   }
 })();
