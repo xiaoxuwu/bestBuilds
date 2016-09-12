@@ -10,7 +10,7 @@
     function config($stateProvider) {
       $stateProvider
         .state('look', {
-          url: '/look/:lookId',
+          url: '/build/:lookId',
           templateUrl: 'app/look/look_detail_view.html',
           controller: 'LookCtrl'
         });

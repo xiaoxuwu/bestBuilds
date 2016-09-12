@@ -46,6 +46,10 @@
       $scope.userLooks.length === 0;
     }
 
+    $scope.reload = function() {
+      $state.reload();
+    };
+
     looksAPI.getUserLooks(userEmail)
       .then(function(data) {
         console.log(data);
