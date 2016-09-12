@@ -15,7 +15,7 @@
                             ng-click="sortByTime()"></i>
                         <i class="fa fa-thumbs-up"
                             ng-click="sortByLikes()"></i>
-          <span ng-show="!isLoggedIn()"> Login to add a build!</span>                  
+          <span ng-show="!isLoggedIn()"> Login to add a build!</span>
           <button class="btn btn-primary"
                       data-animation="am-fade-and-scale"
                       data-placement="center"
@@ -26,7 +26,6 @@
           </div>
 
   <!-- Angular Grid -->
-  <div class="container" infinite-scroll="nextPage()" infinite-scroll-disabled="busy || noMoreData" infinite-scroll-distance="0.1">
     <ul class="dynamic-grid angular-grid"
           angular-grid="looks"
           grid-width="275"
@@ -63,6 +62,4 @@
         </div>
       </li>
     </ul>
-    <div ng-show='busy'>Loading data...</div>
-  </div>
 </div>
