@@ -15,11 +15,12 @@
                             ng-click="sortByTime()"></i>
                         <i class="fa fa-thumbs-up"
                             ng-click="sortByLikes()"></i>
-
+          <span ng-show="!isLoggedIn()"> Login to add a build!</span>                  
           <button class="btn btn-primary"
                       data-animation="am-fade-and-scale"
                       data-placement="center"
                       data-template-url="app/main/addLookModal.html"
+                      ng-show="isLoggedIn()"
                       bs-modal="showModal">Add Build</button>
             </div>
           </div>

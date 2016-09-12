@@ -9,6 +9,7 @@
 
   function MainCtrl($scope, $state, Auth, $modal, scrapeAPI, $http, $alert, looksAPI, Upload) {
     $scope.user = Auth.getCurrentUser();
+    $scope.isLoggedIn = Auth.isLoggedIn;
     var userEmail = $scope.user.email;
 
     $scope.look = {};
