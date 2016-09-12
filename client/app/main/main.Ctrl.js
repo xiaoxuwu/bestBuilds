@@ -9,6 +9,7 @@
 
   function MainCtrl($scope, $state, Auth, $modal, scrapeAPI, $http, $alert, looksAPI, Upload) {
     $scope.user = Auth.getCurrentUser();
+    var userEmail = $scope.user.email;
 
     $scope.look = {};
     $scope.looks = [];
@@ -51,6 +52,17 @@
 
     $scope.showModal = function() {
       myModal.$promise.then(myModal.show);
+    }
+
+    if(userEmail) {
+      looksAPI.getUserLooks(userEmail)
+        .then(function(data) {
+          console.log(data);
+          $scope.userLooks = data.data;
+        })
+        .catch(function(err) {
+          console.log('failed to get builds for user ' + err);
+        });
     }
 
     $scope.reload = function() {

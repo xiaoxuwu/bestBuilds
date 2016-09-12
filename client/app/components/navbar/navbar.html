@@ -23,7 +23,7 @@
 
       <ul class="nav navbar-nav navbar-left">
         <li ng-show="true" ng-class="{active: isActive('/')}">
-         <a ui-sref="main">Home</a></li>
+         <a ng-click="reload()" ui-sref="main">Home</a></li>
 
         <li ng-show="isAdmin()" ng-class="{active: isActive('/admin')}">
         <a ui-sref="admin">Admin</a></li>
@@ -32,7 +32,7 @@
       <ul class="nav navbar-nav navbar-right" >
 
         <li ng-show="isLoggedIn()" ng-class="{active: isActive('/mylooks')}">
-          <a ui-sref="mylooks" id="nav-internal">My Builds</a>
+          <a ng-click="reload()" ui-sref="mylooks" id="nav-internal">My Builds</a>
         </li>
 
         <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/signup')}">

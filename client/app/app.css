@@ -45,16 +45,16 @@ a[ng-click]  { cursor:pointer; }
   position: absolute;
   left: 0;
   right: 0;
-  -webkit-transition:all .2s ease;
-    -moz-transition:all .2s ease;
-    -o-transition:all .2s ease;
-    transition:all .2s ease;
+  -webkit-transition:all .15s ease;
+    -moz-transition:all .15s ease;
+    -o-transition:all .15s ease;
+    transition:all .15s ease;
 }
 [ui-view].ng-enter {
   opacity: 0;
-  -webkit-transform:scale3d(0.5, 0.5, 0.5);
-  -moz-transform:scale3d(0.5, 0.5, 0.5);
-  transform:scale3d(0.5, 0.5, 0.5);
+  -webkit-transform:scale3d(0.9, 0.9, 0.9);
+  -moz-transform:scale3d(0.9, 0.9, 0.9);
+  transform:scale3d(0.9, 0.9, 0.9);
 }
 [ui-view].ng-enter-active {
   opacity: 1;
@@ -70,9 +70,9 @@ a[ng-click]  { cursor:pointer; }
 }
 [ui-view].ng-leave-active {
   opacity: 0;
-  -webkit-transform:translate3d(100px, 0, 0);
-  -moz-transform:translate3d(100px, 0, 0);
-  transform:translate3d(100px, 0, 0);
+  -webkit-transform:translate3d(30px, 0, 0);
+  -moz-transform:translate3d(30px, 0, 0);
+  transform:translate3d(30px, 0, 0);
 }
 div.center-block {
   border: 2px solid #083858;

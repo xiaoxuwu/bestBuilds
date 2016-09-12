@@ -12,23 +12,23 @@
 
     <!-- Angular Grid -->
     <ul class="dynamic-grid angular-grid"
-    angular-grid="looks"
-    grid-width="275"
-    gutter-size="10"
-    angular-grid-id="gallery"
-    refresh-on-img-load="true" >
-    <li data-ng-repeat="look in userLooks"
-    class="grid"
-    ng-cloak>
-    <a ui-sref="look ({ lookId: look._id })"
-    class="lookLink">
-    <img ng-src="{{ look.image }}"
-    class="grid-img"
-    data-actual-width="{{ look.actualWidth }}"
-    data-actual-height="{{ look.actualHeight }}" />
-    <div class="look-description-trim">
-      {{ look.description.substr(0,100) }}
-    </div>
+          angular-grid="looks"
+          grid-width="275"
+          gutter-size="10"
+          angular-grid-id="gallery"
+          refresh-on-img-load="true">
+     <li data-ng-repeat="look in userLooks track by $index"
+          class="grid"
+          ng-cloak>
+        <a ui-sref="look ({ lookId: look._id })"
+            class="lookLink">
+          <img ng-src="{{ look.image }}"
+                  class="grid-img"
+                  data-actual-width="{{ look.actualWidth }}"
+                  data-actual-height="{{ look.actualHeight }}" />
+          <div class="look-description-trim">
+            {{ look.description.substr(0,100) }}
+          </div>
 
     <div class="titleClass">
       {{ look.title }}
