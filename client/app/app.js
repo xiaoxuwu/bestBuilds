@@ -24,7 +24,7 @@
 
   function config($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider.otherwise('/');
-    $locationProvider.html5Mode(false);
+    $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
   }
 
