@@ -55,6 +55,7 @@
       myModal.$promise.then(myModal.show);
     }
 
+
     if(userEmail) {
       looksAPI.getUserLooks(userEmail)
         .then(function(data) {
