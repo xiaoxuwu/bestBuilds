@@ -1,3 +1,20 @@
+.form-control {
+    width: 100%;
+}
+
+.navbar-inverse .navbar-toggle {
+    border: none;
+}
+
+.listing-images img {
+    width: 100%;
+}
+
+.row {
+     margin-right: 0;
+     margin-left: 0;
+}
+
 .listing-wrap {
   background:#FFF;
   border:1px solid #ECECEC;

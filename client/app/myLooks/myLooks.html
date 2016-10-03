@@ -1,7 +1,7 @@
 <div class="container">
     <div class="user-looks-title">
     <h2>My Builds:
-      <span class="label label-info">{{ userLooks.length }}</span> Builds Submitted</h2>
+      <span class="label label-info">{{ userLooks.length }}</span> Submitted</h2>
     </div>
     <div class="spacer"></div>
 
@@ -10,47 +10,35 @@
     </div>
 
     <!-- Angular Grid -->
-    <ul class="dynamic-grid angular-grid"
-          angular-grid="looks"
-          grid-width="275"
-          gutter-size="10"
-          angular-grid-id="gallery"
-          refresh-on-img-load="true">
+    <div class="container" infinite-scroll="nextPage()" infinite-scroll-disabled="busy || noMoreData" infinite-scroll-distance="0.5">
+    <ul>
      <li data-ng-repeat="look in userLooks track by $index"
-          class="grid"
+          class = "myLooks"
           ng-cloak>
         <a ui-sref="look ({ lookId: look._id })"
             class="lookLink">
-          <img ng-src="{{ look.image }}"
-                  class="grid-img"
-                  data-actual-width="{{ look.actualWidth }}"
-                  data-actual-height="{{ look.actualHeight }}" />
+          <img ng-src="{{ look.image }}" class ='lookImg'/>
           <div class="look-description-trim">
             {{ look.description.substr(0,100) }}
           </div>
-
+          <a href="javascript:;"
+          ng-click="editLook(look)"
+          class="edit-look"
+          data-animation="am-fade-and-scale"
+          data-template-url="app/myLooks/edit_look_modal.html"
+          bs-modal="showModal">
+          <i class="fa fa-2x fa-pencil pull-right icon-edit"></i></a>
+          <a href="javascript:;"
+          class="edit-look"
+          ng-click="delete(look)">
+          <i class="fa fa-2x fa-trash-o pull-right icon-edit"
+          data-title="DELETE Item - Cannot be Undone"
+          bs-tooltip></i></a>
     <div class="titleClass">
       {{ look.title }}
     </div>
   </a>
-  <a href="javascript:;"
-  class="like-look"
-  ng-click="addLike(look)">
-  <i class="fa fa-2x fa-thumbs-o-up pull-left icon-like"></i></a>
-  <span class="likeCount">{{ look.upVotes }}</span>
-  <a href="javascript:;"
-  ng-click="editLook(look)"
-  class="edit-look"
-  data-animation="am-fade-and-scale"
-  data-template-url="app/myLooks/edit_look_modal.html"
-  bs-modal="showModal">
-  <i class="fa fa-2x fa-pencil pull-right icon-edit"></i></a>
-  <a href="javascript:;"
-  class="edit-look"
-  ng-click="delete(look)">
-  <i class="fa fa-2x fa-trash-o pull-right icon-edit"
-  data-title="DELETE Item - Cannot be Undone"
-  bs-tooltip></i></a>
 </li>
 </ul>
+</div>
 </div>

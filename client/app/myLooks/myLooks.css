@@ -1,3 +1,27 @@
+img.lookImg {
+  display:grid;
+  width: 30%;
+}
+
+li.myLooks {
+  padding: 1em;
+  border: 3px solid grey;
+  margin-bottom: 2em;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+i {
+  padding-top: 0.5em;
+}
+
+.titleClass {
+  font-size: 2em;
+}
+
 .edit-look {
   color: #1F1F14;
 }
@@ -28,4 +52,7 @@
   margin-top: 15px;
   margin-bottom: 23px;
   overflow: hidden;
+}
+.look-description-trim {
+  display:grid;
 }

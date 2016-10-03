@@ -3,7 +3,7 @@
   <div class="listing-wrap">
     <div class="row">
       <!-- main content (images, description, comments) -->
-      <div class="col-md-7">
+      <div class="col-lg-7 col-md-6">
         <div class="listing-main">
             <h1>{{ look.title }}</h1>
 
@@ -59,14 +59,14 @@
       </div>
 
       <!-- the extra content (title, looks, date, user, save) -->
-      <div class="col-md-5 col-sm-12">
+      <div class="col-lg-5 col-md-6 col-sm-12">
         <div class="listing-extra">
           <h3 class="panel-title-friends">More Builds</h3>
           <div class="listing-info">
             <div class="panel panel-default friends">
               <div class="panel-body">
                 <ul class="row">
-                  <li ng-repeat="plook in popLooks">
+                  <li ng-repeat="plook in popLooks track by $index">
                     <a ui-sref="look ({ lookId: plook._id })">
                       <img class="img img-responsive" ng-src="{{ plook.image }}"></a>
                   </li>
