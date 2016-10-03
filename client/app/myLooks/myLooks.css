@@ -15,11 +15,12 @@ ul {
 }
 
 i {
-  padding-top: 0.5em;
+  padding-top: 0.2em;
 }
 
 .titleClass {
-  font-size: 2em;
+  font-size: 1.5em;
+  text-decoration: none;
 }
 
 .edit-look {
