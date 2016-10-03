@@ -55,7 +55,6 @@
       myModal.$promise.then(myModal.show);
     }
 
-
     if(userEmail) {
       looksAPI.getUserLooks(userEmail)
       .then(function(data) {
@@ -172,6 +171,22 @@
         alertFail.show(); // for our fail alert
       });
     }
+
+    $scope.$watch('searchTxt', function (val) {
+      var looksPulled;
+      looksAPI.getAllLooks()
+      .then(function(data) {
+        looksPulled = data.data;
+        val = val.toLowerCase();
+        $scope.looks = looksPulled.filter(function (obj) {
+            return obj.title.toLowerCase().indexOf(val) != -1;
+        });
+      })
+      .catch(function(err) {
+        console.log('failed to get looks ' + err);
+      });
+    });
+
     /* NOT SUPPORTED ON HEROKU
     $scope.uploadPic = function(file) {
     Upload.upload({
