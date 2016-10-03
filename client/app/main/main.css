@@ -113,12 +113,14 @@
   margin: 20px 0px 10px 105px;
 }
 #searchFilterWrap {
-  margin: 0 auto;
-  margin-top: 15px;
-  margin-bottom: 23px;
-  max-width: 800px;
-  overflow: hidden;
-  padding-right: 350px;
+    /* width: 100%; */
+    margin: auto auto;
+    margin-top: 15px;
+    margin-bottom: 23px;
+    max-width: 800px;
+    overflow: hidden;
+    padding-right: 115px;
+    padding-left: 1em;
 }
 #searchForm {
   float: left;
