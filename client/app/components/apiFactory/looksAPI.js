@@ -27,13 +27,13 @@
 
       function getAllLooks() {
         return $http.get('/api/look/getAllLooks', {
-          cache: true
+          cache: false
         });
       }
 
       function getUserLooks(id) {
         return $http.get('/api/look/getUserLooks/?email=' + id, {
-          cache: true
+          cache: false
         });
       }
 

@@ -19,7 +19,7 @@
     .factory('authInterceptor', authInterceptor);
 
   config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider'];
-  run.$inject = ['$rootScope', '$location', 'Auth'];
+  run.$inject = ['$rootScope', '$location', 'Auth', 'looksAPI'];
   authInterceptor.$inject = ['$rootScope', '$q', '$cookieStore', '$location']
 
   function config($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
@@ -28,9 +28,22 @@
     $httpProvider.interceptors.push('authInterceptor');
   }
 
-  function run($rootScope, $location, Auth) {
+  function run($rootScope, $location, Auth, looksAPI) {
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function(event, next) {
+      looksAPI.getAllLooks()
+      .then(function(data) {
+        console.log('looks found ');
+        console.log(data);
+        // $scope.looks = data.data;
+        $rootScope.looks = data.data;
+        //$scope.nextPage();
+        $rootScope.busy = false;
+      })
+      .catch(function(err) {
+        console.log('failed to get looks ' + err);
+      });
+
       Auth.isLoggedInAsync(function(loggedIn) {
         if (next.authenticate && !loggedIn) {
           $location.path('/login');
