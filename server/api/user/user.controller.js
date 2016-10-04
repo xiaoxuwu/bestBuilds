@@ -28,7 +28,7 @@ exports.create = function(req, res, next) {
 
   var getGravatar = gravatar.url(req.body.email, {
     s: 40,
-    d: 'retro'
+    d: 'mm'
   });
 
   var newUser = new User(req.body);
