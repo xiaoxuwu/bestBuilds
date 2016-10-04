@@ -1,18 +1,18 @@
 img.lookImg {
   display:grid;
   width: 30%;
+  border-radius: 0.3em;
 }
 
 li.myLooks {
   padding: 1em;
-  border: 3px solid grey;
+  border: 2px solid grey;
   border-radius: 1em;
   margin-bottom: 2em;
 }
 
 ul {
   list-style-type: none;
-  padding-left: 0;
 }
 
 i {
