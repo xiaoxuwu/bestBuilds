@@ -11,8 +11,13 @@ li.myLooks {
   margin-bottom: 2em;
 }
 
+h2 {
+  text-align: center;
+}
+
 ul {
   list-style-type: none;
+  padding-left: 0;
 }
 
 i {

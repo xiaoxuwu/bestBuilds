@@ -15,8 +15,6 @@
      <li data-ng-repeat="look in userLooks track by $index"
           class = "myLooks"
           ng-cloak>
-        <a ui-sref="look ({ lookId: look._id })"
-            class="lookLink">
             <a href="javascript:;"
             ng-click="editLook(look)"
             class="edit-look"
@@ -30,14 +28,16 @@
             <i class="fa fa-2x fa-trash-o pull-right icon-edit"
             data-title="DELETE Item - Cannot be Undone"
             bs-tooltip></i></a>
-          <img ng-src="{{ look.image }}" class ='lookImg'/>
+            <a ui-sref="look ({ lookId: look._id })"
+                class="lookLink">
+          <img ng-src="{{ look.image }}" class ='lookImg'/>    </a>
           <div class="look-description-trim">
             {{ look.description.substr(0,100) }}
           </div>
     <div class="titleClass">
-      {{ look.title }}
+      <a ui-sref="look ({ lookId: look._id })"
+          class="lookLink">{{ look.title }}</a>
     </div>
-    </a>
 </li>
 </ul>
 </div>

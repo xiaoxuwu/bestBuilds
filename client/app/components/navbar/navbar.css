@@ -44,6 +44,7 @@ a {
   margin-left: 10px;
   height: 30px;
   width: 30px;
+  border: 2px solid darkslategrey;
 }
 .navbar-text {
   margin-top: 0;
