@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   angular
@@ -15,45 +15,41 @@
     $scope.popBuilds = [];
 
     buildsAPI.findOneBuild($scope.id)
-      .then(function(data) {
-        console.log(data);
+      .then(function (data) {
         $scope.build = data.data;
         addView();
       })
-      .catch(function(err) {
+      .catch(function (err) {
         console.log('failed to get build ', err);
       });
 
     buildsAPI.popBuilds($scope.id)
-      .then(function(data) {
-        console.log(data);
+      .then(function (data) {
         $scope.popBuilds = data.data;
       })
-      .catch(function(err) {
+      .catch(function (err) {
         console.log('failed to get pop build ', err);
       });
 
     commentAPI.getComments($scope.id)
-      .then(function(data) {
-        console.log(data);
+      .then(function (data) {
         $scope.comments = data.data;
       })
-      .catch(function(err) {
+      .catch(function (err) {
         console.log('failed to get comments ' + err);
       });
 
-    $scope.addVote = function(build) {
+    $scope.addVote = function (build) {
       buildsAPI.upVoteBuild(build)
-        .then(function(data) {
-          console.log(data);
+        .then(function (data) {
           build.upVotes++;
         })
-        .catch(function(err) {
+        .catch(function (err) {
           console.log('failed adding upvote ');
         });
     }
 
-    $scope.postComment = function() {
+    $scope.postComment = function () {
       var comment = {
         authorId: $scope.user._id,
         authorName: $scope.user.name,
@@ -63,23 +59,21 @@
         buildId: $scope.id
       }
       commentAPI.addComment(comment)
-        .then(function(data) {
-          console.log(data);
+        .then(function (data) {
           $scope.comment.body = '';
           $scope.comments.splice(0, 0, data.data);
         })
-        .catch(function(err) {
+        .catch(function (err) {
           console.log('failed to post comment ' + err);
         })
     }
 
     function addView() {
       buildsAPI.addView($scope.id)
-        .then(function(res) {
+        .then(function (res) {
           console.log('view added to Build');
-          console.log(res);
         })
-        .catch(function(err) {
+        .catch(function (err) {
           console.log('failed to increment ', err);
         });
     }

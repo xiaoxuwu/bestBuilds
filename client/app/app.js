@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   angular
@@ -30,20 +30,20 @@
 
   function run($rootScope, $location, Auth, buildsAPI) {
     // Redirect to login if route requires auth and you're not logged in
-    $rootScope.$on('$stateChangeStart', function(event, next) {
+    $rootScope.$on('$stateChangeStart', function (event, next) {
       buildsAPI.getAllBuilds()
-      .then(function(data) {
-        console.log('builds found ');
-        // $scope.builds = data.data;
-        $rootScope.builds = data.data;
-        //$scope.nextPage();
-        $rootScope.busy = false;
-      })
-      .catch(function(err) {
-        console.log('failed to get builds ' + err);
-      });
+        .then(function (data) {
+          console.log('builds found ');
+          // $scope.builds = data.data;
+          $rootScope.builds = data.data;
+          //$scope.nextPage();
+          $rootScope.busy = false;
+        })
+        .catch(function (err) {
+          console.log('failed to get builds ' + err);
+        });
 
-      Auth.isLoggedInAsync(function(loggedIn) {
+      Auth.isLoggedInAsync(function (loggedIn) {
         if (next.authenticate && !loggedIn) {
           $location.path('/login');
         }
@@ -54,7 +54,7 @@
   function authInterceptor($rootScope, $q, $cookieStore, $location) {
     return {
       // Add authorization token to headers
-      request: function(config) {
+      request: function (config) {
         config.headers = config.headers || {};
         if ($cookieStore.get('token')) {
           config.headers.Authorization = 'Bearer ' + $cookieStore.get('token');
@@ -63,7 +63,7 @@
       },
 
       // Intercept 401s and redirect you to login
-      responseError: function(response) {
+      responseError: function (response) {
         if (response.status === 401) {
           $location.path('/login');
           // remove any stale tokens

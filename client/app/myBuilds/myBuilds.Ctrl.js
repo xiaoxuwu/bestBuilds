@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   angular
@@ -38,66 +38,66 @@
       show: false
     });
 
-    $scope.showModal = function() {
+    $scope.showModal = function () {
       myModal.$promise.then(myModal.show);
     }
 
-    $scope.noBuilds = function() {
+    $scope.noBuilds = function () {
       $scope.userBuilds.length === 0;
     }
 
-    $scope.reload = function() {
+    $scope.reload = function () {
       $state.reload();
     };
 
     buildsAPI.getUserBuilds(userEmail)
-      .then(function(data) {
+      .then(function (data) {
         $scope.userBuilds = data.data;
       })
-      .catch(function(err) {
+      .catch(function (err) {
         console.log('failed to get builds for user ' + err);
       });
 
-    $scope.editBuild = function(build) {
+    $scope.editBuild = function (build) {
       buildsAPI.getUpdateBuild(build)
-        .then(function(data) {
+        .then(function (data) {
           $scope.editBuild = data.data;
         })
-        .catch(function(err) {
+        .catch(function (err) {
           console.log('failed to edit build ' + err);
         });
     }
 
-    $scope.saveBuild = function() {
+    $scope.saveBuild = function () {
       var build = $scope.editBuild;
 
       buildsAPI.updateBuild(build)
-        .then(function(data) {
+        .then(function (data) {
           console.log('Build updated');
           $scope.editBuild.title = '';
           $scope.editBuild.description = '';
           alertSuccess.show();
         })
-        .catch(function(err) {
+        .catch(function (err) {
           console.log('failed to update' + err);
           alertFail.show();
         });
     }
 
-    $scope.delete = function(build) {
+    $scope.delete = function (build) {
       var index = $scope.userBuilds.indexOf(build);
 
       buildsAPI.deleteBuild(build)
-        .then(function(data) {
+        .then(function (data) {
           console.log('success, build deleted');
           $scope.userBuilds.splice(index, 1);
         })
-        .catch(function(err) {
+        .catch(function (err) {
           console.log('failed to delete build' + err);
         });
     }
 
-    $document.ready(function(){
+    $document.ready(function () {
 
     })
   }

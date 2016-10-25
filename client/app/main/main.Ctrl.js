@@ -1,9 +1,9 @@
-(function() {
+(function () {
   'use strict';
 
   angular
-  .module('app')
-  .controller('MainCtrl', MainCtrl);
+    .module('app')
+    .controller('MainCtrl', MainCtrl);
 
   MainCtrl.$inject = ['$scope', '$state', 'Auth', '$modal', 'scrapeAPI', '$http', '$alert', 'buildsAPI', 'Upload'];
 
@@ -51,35 +51,35 @@
       show: false
     });
 
-    $scope.showModal = function() {
+    $scope.showModal = function () {
       myModal.$promise.then(myModal.show);
     }
 
-    if(userEmail) {
+    if (userEmail) {
       buildsAPI.getUserBuilds(userEmail)
-      .then(function(data) {
-        $scope.userBuilds = data.data;
-      })
-      .catch(function(err) {
-        console.log('failed to get builds for user ' + err);
-      });
+        .then(function (data) {
+          $scope.userBuilds = data.data;
+        })
+        .catch(function (err) {
+          console.log('failed to get builds for user ' + err);
+        });
     }
 
-    $scope.reload = function() {
+    $scope.reload = function () {
       $state.reload();
     };
 
     buildsAPI.getAllBuilds()
-    .then(function(data) {
-      console.log('builds found ');
-      // $scope.builds = data.data;
-      $scope.builds = data.data;
-      //$scope.nextPage();
-      $scope.busy = false;
-    })
-    .catch(function(err) {
-      console.log('failed to get builds ' + err);
-    });
+      .then(function (data) {
+        console.log('builds found ');
+        // $scope.builds = data.data;
+        $scope.builds = data.data;
+        //$scope.nextPage();
+        $scope.busy = false;
+      })
+      .catch(function (err) {
+        console.log('failed to get builds ' + err);
+      });
 
     // $scope.nextPage = function() {
     //   var buildLength = $scope.builds.length;
@@ -95,52 +95,52 @@
     //   }
     // };
 
-    $scope.showUploadForm = function() {
+    $scope.showUploadForm = function () {
       $scope.uploadBuildForm = true;
       $scope.scrapePostForm = false;
       $scope.uploadBuildTitle = false;
     }
 
     // Watch for changes to URL, Scrape and Display the image
-    $scope.$watch("build.link", function(newVal, oldVal) {
+    $scope.$watch("build.link", function (newVal, oldVal) {
       if (newVal && newVal.length > 5) {
         $scope.loading = true;
         var link = {
           url: $scope.build.link
         }
         scrapeAPI.getScrapeDetails(link)
-        .then(function(data) {
-          $scope.showScrapeDetails = true;
-          $scope.gotScrapeResults = true;
-          $scope.uploadBuildTitle = false;
-          $scope.build.imgThumb = data.data.img;
-          $scope.build.description = data.data.desc;
-        })
-        .catch(function(data) {
-          console.log('failed to return from scrape');
-          $scope.loading = false;
-          $scope.build.link = '';
-          $scope.gotScrapeResults = false;
-        })
-        .finally(function() {
-          $scope.loading = false;
-          $scope.uploadBuildForm = false;
-        });
+          .then(function (data) {
+            $scope.showScrapeDetails = true;
+            $scope.gotScrapeResults = true;
+            $scope.uploadBuildTitle = false;
+            $scope.build.imgThumb = data.data.img;
+            $scope.build.description = data.data.desc;
+          })
+          .catch(function (data) {
+            console.log('failed to return from scrape');
+            $scope.loading = false;
+            $scope.build.link = '';
+            $scope.gotScrapeResults = false;
+          })
+          .finally(function () {
+            $scope.loading = false;
+            $scope.uploadBuildForm = false;
+          });
       }
     });
 
-    $scope.addVote = function(build) {
+    $scope.addVote = function (build) {
 
       buildsAPI.upVoteBuild(build)
-      .then(function(data) {
-        build.upVotes++;
-      })
-      .catch(function(err) {
-        console.log('failed adding upvote ');
-      });
+        .then(function (data) {
+          build.upVotes++;
+        })
+        .catch(function (err) {
+          console.log('failed adding upvote ');
+        });
     }
 
-    $scope.addScrapePost = function() {
+    $scope.addScrapePost = function () {
       var build = {
         description: $scope.build.description,
         title: $scope.build.title,
@@ -151,35 +151,35 @@
         _creator: $scope.user._id
       }
       buildsAPI.createScrapeBuild(build)
-      .then(function(data) {
-        console.log('posted from frontend success');
-        alertSuccess.show();
-        $scope.showScrapeDetails = false;
-        $scope.gotScrapeResults = false;
-        $scope.build.title = '';
-        $scope.build.link = '';
-        $scope.builds.splice(0, 0, data.data);
-      })
-      .catch(function() {
-        console.log('failed to post from frontend ');
-        $scope.showScrapeDetails = false;
-        alertFail.show(); // for our fail alert
-      });
+        .then(function (data) {
+          console.log('posted from frontend success');
+          alertSuccess.show();
+          $scope.showScrapeDetails = false;
+          $scope.gotScrapeResults = false;
+          $scope.build.title = '';
+          $scope.build.link = '';
+          $scope.builds.splice(0, 0, data.data);
+        })
+        .catch(function () {
+          console.log('failed to post from frontend ');
+          $scope.showScrapeDetails = false;
+          alertFail.show(); // for our fail alert
+        });
     }
 
     $scope.$watch('searchTxt', function (val) {
       var buildsPulled;
       buildsAPI.getAllBuilds()
-      .then(function(data) {
-        buildsPulled = data.data;
-        val = val.toLowerCase();
-        $scope.builds = buildsPulled.filter(function (obj) {
+        .then(function (data) {
+          buildsPulled = data.data;
+          val = val.toLowerCase();
+          $scope.builds = buildsPulled.filter(function (obj) {
             return obj.title.toLowerCase().indexOf(val) != -1;
+          });
+        })
+        .catch(function (err) {
+          console.log('failed to get builds ' + err);
         });
-      })
-      .catch(function(err) {
-        console.log('failed to get builds ' + err);
-      });
     });
 
     /* NOT SUPPORTED ON HEROKU
@@ -214,5 +214,5 @@ console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name
 });
 }
 */
-}
+  }
 })();
