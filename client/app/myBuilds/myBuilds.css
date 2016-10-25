@@ -1,10 +1,10 @@
-img.lookImg {
+img.buildImg {
   display:grid;
   width: 30%;
   border-radius: 0.3em;
 }
 
-li.myLooks {
+li.myBuilds {
   padding: 1em;
   border: 2px solid grey;
   border-radius: 1em;
@@ -29,13 +29,13 @@ i {
   text-decoration: none;
 }
 
-.edit-look {
+.edit-build {
   color: #1F1F14;
 }
 .icon-edit {
   margin-right: 10px;
 }
-.like-look {
+.like-build {
   color: #333333;
 }
 .likeCount {
@@ -51,15 +51,15 @@ i {
 .title-input {
   margin-left: 10px;
 }
-.show-no-looks h3 {
+.show-no-builds h3 {
   text-align: center;
 }
-.user-looks-title {
+.user-builds-title {
   margin: 0 auto;
   margin-top: 15px;
   margin-bottom: 23px;
   overflow: hidden;
 }
-.look-description-trim {
+.build-description-trim {
   display:grid;
 }

@@ -28,7 +28,6 @@ exports.list = function(url, cb) {
       }
 
       //respond with the final json
-      console.log('scraped: ', image);
       cb(image);
     }
   });

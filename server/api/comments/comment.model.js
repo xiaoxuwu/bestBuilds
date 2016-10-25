@@ -16,9 +16,9 @@ var CommentSchema = new Schema({
       type: String
     }
   },
-  lookId: {
+  buildId: {
     type: Schema.ObjectId,
-    ref: 'Look'
+    ref: 'Build'
   },
   gravatar: {
     type: String

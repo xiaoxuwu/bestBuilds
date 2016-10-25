@@ -82,11 +82,11 @@
   text-decoration: underline;
   font-size: 16px;
 }
-.uploadLookTitle button {
+.uploadBuildTitle button {
   max-width: 300px;
   margin-left: 20px;
 }
-.look-description-trim {
+.build-description-trim {
   padding: 0 5px;
   background-color: #e1e1e1;
   border-bottom: 2px solid #ccc;
@@ -98,11 +98,11 @@
   color: #999;
   padding: 0 5px;
 }
-.lookLink {
+.buildLink {
   color: #000;
   text-decoration: none;
 }
-.lookLink:hover {
+.buildLink:hover {
   text-decoration: none;
   color: #000;
 }
@@ -203,7 +203,7 @@
 .close-btn-main button {
   margin-left: 20px;
 }
-.like-look {
+.like-build {
   color: #333333;
 }
 .cancel{

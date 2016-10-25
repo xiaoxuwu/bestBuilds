@@ -15,7 +15,7 @@
           <button class="btn btn-primary"
                       data-animation="am-fade-and-scale"
                       data-placement="center"
-                      data-template-url="app/main/addLookModal.html"
+                      data-template-url="app/main/addBuildModal.html"
                       ng-show="isLoggedIn()"
                       bs-modal="showModal">Add Build</button>
             </div>
@@ -24,36 +24,36 @@
   <!-- Angular Grid -->
   <div class="container" infinite-scroll="nextPage()" infinite-scroll-disabled="busy || noMoreData" infinite-scroll-distance="0.5">
     <ul class="dynamic-grid angular-grid"
-          angular-grid="looks"
+          angular-grid="builds"
           grid-width="275"
           gutter-size="10"
           angular-grid-id="gallery"
           refresh-on-img-load="true">
-     <li data-ng-repeat="look in looks track by $index"
+     <li data-ng-repeat="build in builds track by $index"
           class="grid"
           ng-cloak>
-        <a ui-sref="look ({ lookId: look._id })"
-            class="lookLink">
-          <img ng-src="{{ look.image }}"
+        <a ui-sref="build ({ buildId: build._id })"
+            class="buildLink">
+          <img ng-src="{{ build.image }}"
                   class="grid-img"
-                  data-actual-width="{{ look.actualWidth }}"
-                  data-actual-height="{{ look.actualHeight }}" />
-          <div class="look-description-trim">
-            {{ look.description.substr(0,100) }}
+                  data-actual-width="{{ build.actualWidth }}"
+                  data-actual-height="{{ build.actualHeight }}" />
+          <div class="build-description-trim">
+            {{ build.description.substr(0,100) }}
           </div>
 
           <div class="titleClass">
-            {{ look.title }}
+            {{ build.title }}
           </div>
         </a>
         <div class="social">
         <a href="#"
-             class="like-look"
-             ng-click="addVote(look)">
+             class="like-build"
+             ng-click="addVote(build)">
           <i class="fa fa-thumbs-o-up fa-2x icon-like"></i></a>
-            <span class="likeCount">{{ look.upVotes }}</span>
+            <span class="likeCount">{{ build.upVotes }}</span>
 
-            <span class="viewCount pull-right">{{ look.views }}</span>
+            <span class="viewCount pull-right">{{ build.views }}</span>
           <i class="fa fa-eye fa-2x pull-right icon-views"></i>
 
         </div>

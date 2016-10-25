@@ -22,23 +22,23 @@
             <div class="panel panel-default">
               <div class="panel-body listing-images-admin">
               <ul class="dynamic-grid angular-grid"
-                    angular-grid="looks"
+                    angular-grid="builds"
                     grid-width="150"
                     gutter-size="10"
                     angular-grid-id="gallery"
                     refresh-on-img-load="true">
-     <li data-ng-repeat="look in looks"
+     <li data-ng-repeat="build in builds"
           class="grid"
           ng-cloak>
-        <a class="lookLink"
-             ng-click="editLook(look)"
-             data-template-url="app/admin/remove_look_modal.html"
+        <a class="buildLink"
+             ng-click="editBuild(build)"
+             data-template-url="app/admin/remove_build_modal.html"
              data-animation="am-fade-and-scale"
              bs-modal="showModal">
-          <img ng-src="{{ look.image }}"
+          <img ng-src="{{ build.image }}"
                   class="grid-img"
-                  data-actual-width="{{ look.actualWidth }}"
-                  data-actual-height="{{ look.actualHeight }}" /></a>
+                  data-actual-width="{{ build.actualWidth }}"
+                  data-actual-height="{{ build.actualHeight }}" /></a>
       </li>
     </ul>
                 </div>

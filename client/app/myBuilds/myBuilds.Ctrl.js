@@ -3,21 +3,21 @@
 
   angular
     .module('app')
-    .controller('MyLooksCtrl', MyLooksCtrl);
+    .controller('MyBuildsCtrl', MyBuildsCtrl);
 
-  MyLooksCtrl.$inject = ['$scope', '$modal', '$state', '$alert', 'looksAPI', 'Auth', '$document'];
+  MyBuildsCtrl.$inject = ['$scope', '$modal', '$state', '$alert', 'buildsAPI', 'Auth', '$document'];
 
-  function MyLooksCtrl($scope, $modal, $state, $alert, looksAPI, Auth, $document) {
+  function MyBuildsCtrl($scope, $modal, $state, $alert, buildsAPI, Auth, $document) {
 
     $scope.user = Auth.getCurrentUser();
     var userEmail = $scope.user.email;
 
-    $scope.userLooks = [];
-    $scope.editLook = {};
+    $scope.userBuilds = [];
+    $scope.editBuild = {};
 
     var alertSuccess = $alert({
       title: 'Saved ',
-      content: 'Look has been edited',
+      content: 'Build has been edited',
       placement: 'top-right',
       container: '#alertContainer',
       type: 'success',
@@ -26,7 +26,7 @@
 
     var alertFail = $alert({
       title: 'Not Saved ',
-      content: 'Look has failed to edit',
+      content: 'Build has failed to edit',
       placement: 'top-right',
       container: '#alertContainer',
       type: 'warning',
@@ -42,43 +42,40 @@
       myModal.$promise.then(myModal.show);
     }
 
-    $scope.noLooks = function() {
-      $scope.userLooks.length === 0;
+    $scope.noBuilds = function() {
+      $scope.userBuilds.length === 0;
     }
 
     $scope.reload = function() {
       $state.reload();
     };
 
-    looksAPI.getUserLooks(userEmail)
+    buildsAPI.getUserBuilds(userEmail)
       .then(function(data) {
-        console.log(data);
-        $scope.userLooks = data.data;
+        $scope.userBuilds = data.data;
       })
       .catch(function(err) {
         console.log('failed to get builds for user ' + err);
       });
 
-    $scope.editLook = function(look) {
-      looksAPI.getUpdateLook(look)
+    $scope.editBuild = function(build) {
+      buildsAPI.getUpdateBuild(build)
         .then(function(data) {
-          console.log(data);
-          $scope.editLook = data.data;
+          $scope.editBuild = data.data;
         })
         .catch(function(err) {
           console.log('failed to edit build ' + err);
         });
     }
 
-    $scope.saveLook = function() {
-      var look = $scope.editLook;
+    $scope.saveBuild = function() {
+      var build = $scope.editBuild;
 
-      looksAPI.updateLook(look)
+      buildsAPI.updateBuild(build)
         .then(function(data) {
-          console.log('Look updated');
-          console.log(data);
-          $scope.editLook.title = '';
-          $scope.editLook.description = '';
+          console.log('Build updated');
+          $scope.editBuild.title = '';
+          $scope.editBuild.description = '';
           alertSuccess.show();
         })
         .catch(function(err) {
@@ -87,13 +84,13 @@
         });
     }
 
-    $scope.delete = function(look) {
-      var index = $scope.userLooks.indexOf(look);
+    $scope.delete = function(build) {
+      var index = $scope.userBuilds.indexOf(build);
 
-      looksAPI.deleteLook(look)
+      buildsAPI.deleteBuild(build)
         .then(function(data) {
           console.log('success, build deleted');
-          $scope.userLooks.splice(index, 1);
+          $scope.userBuilds.splice(index, 1);
         })
         .catch(function(err) {
           console.log('failed to delete build' + err);

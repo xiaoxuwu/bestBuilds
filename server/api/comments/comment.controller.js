@@ -8,7 +8,7 @@ exports.addComment = function(req, res) {
   newComment.author.email = req.body.authorEmail;
   newComment.gravatar = req.body.gravatar;
   newComment.comment = req.body.comment;
-  newComment.lookId = req.body.lookId;
+  newComment.buildId = req.body.buildId;
   newComment.createTime = Date.now();
 
   newComment.save(function(err, comment) {
@@ -16,7 +16,6 @@ exports.addComment = function(req, res) {
       console.log('error saving comment');
       return res.send(500);
     } else {
-      console.log(comment);
       res.status(200)
            .json(comment);
     }
@@ -25,7 +24,7 @@ exports.addComment = function(req, res) {
 
 exports.getComments = function(req, res) {
   Comment.find({
-    'lookId': req.params.id
+    'buildId': req.params.id
   })
   .sort({
     createTime: -1
@@ -37,7 +36,6 @@ exports.getComments = function(req, res) {
     if(!comments) {
       return res.send(404);
     }
-    console.log(comments);
     return res.status(200)
                    .json(comments);
   });

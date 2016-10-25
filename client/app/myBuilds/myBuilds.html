@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="user-builds-title">
+    <h2>My Builds:
+      <span class="label label-info">{{ userBuilds.length }}</span> Submitted</h2>
+    </div>
+    <div class="spacer"></div>
+
+    <div class="show-no-builds" ng-if="noBuilds()">
+    <h3>No Builds Added, Why don't you <a ui-sref="main">add one</a>?</h3>
+    </div>
+
+    <!-- Angular Grid -->
+    <div class="container" infinite-scroll="nextPage()" infinite-scroll-disabled="busy || noMoreData" infinite-scroll-distance="0.5">
+    <ul>
+     <li data-ng-repeat="build in userBuilds track by $index"
+          class = "myBuilds"
+          ng-cloak>
+            <a href="javascript:;"
+            ng-click="editBuild(build)"
+            class="edit-build"
+            data-animation="am-fade-and-scale"
+            data-template-url="app/myBuilds/edit_build_modal.html"
+            bs-modal="showModal">
+            <i class="fa fa-2x fa-pencil pull-right icon-edit"></i></a>
+            <a href="javascript:;"
+            class="edit-build"
+            ng-click="delete(build)">
+            <i class="fa fa-2x fa-trash-o pull-right icon-edit"
+            data-title="DELETE Item - Cannot be Undone"
+            bs-tooltip></i></a>
+            <a ui-sref="build ({ buildId: build._id })"
+                class="buildLink">
+          <img ng-src="{{ build.image }}" class ='buildImg'/>    </a>
+          <div class="build-description-trim">
+            {{ build.description.substr(0,100) }}
+          </div>
+    <div class="titleClass">
+      <a ui-sref="build ({ buildId: build._id })"
+          class="buildLink">{{ build.title }}</a>
+    </div>
+</li>
+</ul>
+</div>
+</div>

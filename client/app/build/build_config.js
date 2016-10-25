@@ -9,10 +9,10 @@
 
     function config($stateProvider) {
       $stateProvider
-        .state('look', {
-          url: '/build/:lookId',
-          templateUrl: 'app/look/look_detail_view.html',
-          controller: 'LookCtrl'
+        .state('build', {
+          url: '/build/:buildId',
+          templateUrl: 'app/build/build_detail_view.html',
+          controller: 'BuildCtrl'
         });
     }
 })();

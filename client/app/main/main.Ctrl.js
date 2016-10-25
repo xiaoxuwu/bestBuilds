@@ -5,23 +5,23 @@
   .module('app')
   .controller('MainCtrl', MainCtrl);
 
-  MainCtrl.$inject = ['$scope', '$state', 'Auth', '$modal', 'scrapeAPI', '$http', '$alert', 'looksAPI', 'Upload'];
+  MainCtrl.$inject = ['$scope', '$state', 'Auth', '$modal', 'scrapeAPI', '$http', '$alert', 'buildsAPI', 'Upload'];
 
-  function MainCtrl($scope, $state, Auth, $modal, scrapeAPI, $http, $alert, looksAPI, Upload) {
+  function MainCtrl($scope, $state, Auth, $modal, scrapeAPI, $http, $alert, buildsAPI, Upload) {
     $scope.user = Auth.getCurrentUser();
     $scope.isLoggedIn = Auth.isLoggedIn;
     var userEmail = $scope.user.email;
 
-    $scope.look = {};
-    $scope.looks = [];
+    $scope.build = {};
+    $scope.builds = [];
     $scope.scrapePostForm = true;
     $scope.showScrapeDetails = false;
     $scope.gotScrapeResults = false;
     $scope.loading = false;
 
     $scope.picPreview = true;
-    $scope.uploadLookTitle = true;
-    $scope.uploadLookForm = false;
+    $scope.uploadBuildTitle = true;
+    $scope.uploadBuildForm = false;
 
     $scope.busy = true;
     $scope.allData = [];
@@ -30,7 +30,7 @@
 
     var alertSuccess = $alert({
       title: 'Success! ',
-      content: 'New Look added',
+      content: 'New Build added',
       placement: 'top-right',
       container: '#alertContainer',
       type: 'success',
@@ -39,7 +39,7 @@
 
     var alertFail = $alert({
       title: 'Not saved',
-      content: 'New Look failed to save',
+      content: 'New Build failed to save',
       placement: 'top-right',
       container: '#alertContainer',
       type: 'warning',
@@ -56,10 +56,9 @@
     }
 
     if(userEmail) {
-      looksAPI.getUserLooks(userEmail)
+      buildsAPI.getUserBuilds(userEmail)
       .then(function(data) {
-        console.log(data);
-        $scope.userLooks = data.data;
+        $scope.userBuilds = data.data;
       })
       .catch(function(err) {
         console.log('failed to get builds for user ' + err);
@@ -70,74 +69,71 @@
       $state.reload();
     };
 
-    looksAPI.getAllLooks()
+    buildsAPI.getAllBuilds()
     .then(function(data) {
-      console.log('looks found ');
-      console.log(data);
-      // $scope.looks = data.data;
-      $scope.looks = data.data;
+      console.log('builds found ');
+      // $scope.builds = data.data;
+      $scope.builds = data.data;
       //$scope.nextPage();
       $scope.busy = false;
     })
     .catch(function(err) {
-      console.log('failed to get looks ' + err);
+      console.log('failed to get builds ' + err);
     });
 
     // $scope.nextPage = function() {
-    //   var lookLength = $scope.looks.length;
+    //   var buildLength = $scope.builds.length;
     //   if($scope.busy) {
     //     return;
     //   }
     //   $scope.busy = true;
-    //   $scope.looks = $scope.looks.concat($scope.allData.splice(page * step, step));
+    //   $scope.builds = $scope.builds.concat($scope.allData.splice(page * step, step));
     //   page++;
     //   $scope.busy = false;
-    //   if($scope.looks.length === 0) {
+    //   if($scope.builds.length === 0) {
     //     $scope.noMoreData = true;
     //   }
     // };
 
     $scope.showUploadForm = function() {
-      $scope.uploadLookForm = true;
+      $scope.uploadBuildForm = true;
       $scope.scrapePostForm = false;
-      $scope.uploadLookTitle = false;
+      $scope.uploadBuildTitle = false;
     }
 
     // Watch for changes to URL, Scrape and Display the image
-    $scope.$watch("look.link", function(newVal, oldVal) {
+    $scope.$watch("build.link", function(newVal, oldVal) {
       if (newVal && newVal.length > 5) {
         $scope.loading = true;
         var link = {
-          url: $scope.look.link
+          url: $scope.build.link
         }
         scrapeAPI.getScrapeDetails(link)
         .then(function(data) {
-          console.log(data);
           $scope.showScrapeDetails = true;
           $scope.gotScrapeResults = true;
-          $scope.uploadLookTitle = false;
-          $scope.look.imgThumb = data.data.img;
-          $scope.look.description = data.data.desc;
+          $scope.uploadBuildTitle = false;
+          $scope.build.imgThumb = data.data.img;
+          $scope.build.description = data.data.desc;
         })
         .catch(function(data) {
           console.log('failed to return from scrape');
           $scope.loading = false;
-          $scope.look.link = '';
+          $scope.build.link = '';
           $scope.gotScrapeResults = false;
         })
         .finally(function() {
           $scope.loading = false;
-          $scope.uploadLookForm = false;
+          $scope.uploadBuildForm = false;
         });
       }
     });
 
-    $scope.addVote = function(look) {
+    $scope.addVote = function(build) {
 
-      looksAPI.upVoteLook(look)
+      buildsAPI.upVoteBuild(build)
       .then(function(data) {
-        console.log(data);
-        look.upVotes++;
+        build.upVotes++;
       })
       .catch(function(err) {
         console.log('failed adding upvote ');
@@ -145,25 +141,24 @@
     }
 
     $scope.addScrapePost = function() {
-      var look = {
-        description: $scope.look.description,
-        title: $scope.look.title,
-        image: $scope.look.imgThumb,
-        linkURL: $scope.look.link,
+      var build = {
+        description: $scope.build.description,
+        title: $scope.build.title,
+        image: $scope.build.imgThumb,
+        linkURL: $scope.build.link,
         email: $scope.user.email,
         name: $scope.user.name,
         _creator: $scope.user._id
       }
-      looksAPI.createScrapeLook(look)
+      buildsAPI.createScrapeBuild(build)
       .then(function(data) {
         console.log('posted from frontend success');
-        console.log(data);
         alertSuccess.show();
         $scope.showScrapeDetails = false;
         $scope.gotScrapeResults = false;
-        $scope.look.title = '';
-        $scope.look.link = '';
-        $scope.looks.splice(0, 0, data.data);
+        $scope.build.title = '';
+        $scope.build.link = '';
+        $scope.builds.splice(0, 0, data.data);
       })
       .catch(function() {
         console.log('failed to post from frontend ');
@@ -173,41 +168,41 @@
     }
 
     $scope.$watch('searchTxt', function (val) {
-      var looksPulled;
-      looksAPI.getAllLooks()
+      var buildsPulled;
+      buildsAPI.getAllBuilds()
       .then(function(data) {
-        looksPulled = data.data;
+        buildsPulled = data.data;
         val = val.toLowerCase();
-        $scope.looks = looksPulled.filter(function (obj) {
+        $scope.builds = buildsPulled.filter(function (obj) {
             return obj.title.toLowerCase().indexOf(val) != -1;
         });
       })
       .catch(function(err) {
-        console.log('failed to get looks ' + err);
+        console.log('failed to get builds ' + err);
       });
     });
 
     /* NOT SUPPORTED ON HEROKU
     $scope.uploadPic = function(file) {
     Upload.upload({
-    url: '/api/look/upload',
+    url: '/api/build/upload',
     headers: {
     'Content-Type': 'multipart/form-data'
   },
   data: {
   file: file,
-  title: $scope.look.title,
-  description: $scope.look.description,
+  title: $scope.build.title,
+  description: $scope.build.description,
   email: $scope.user.email,
   name: $scope.user.name,
-  linkURL: $scope.look._id,
+  linkURL: $scope.build._id,
   _creator: $scope.user._id
 }
 }).then(function(resp) {
 console.log('success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
-$scope.looks.splice(0, 0, resp.data);
-$scope.look.title = '';
-$scope.look.description = '';
+$scope.builds.splice(0, 0, resp.data);
+$scope.build.title = '';
+$scope.build.description = '';
 $scope.picFile = '';
 $scope.picPreview = false;
 alertSuccess.show();

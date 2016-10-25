@@ -27,7 +27,6 @@ exports.list = function(url, cb) {
       }
 
       //respond with the final json
-      console.log('scraped: ', jpeg);
       cb(jpeg);
     }
   });

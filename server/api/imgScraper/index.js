@@ -1,6 +1,6 @@
 'use strict';
 
-// var controller = require('./look.controller');
+// var controller = require('./build.controller');
 var controller = require('./imgScraper.controller');
 var express = require('express');
 var auth = require('../../auth/auth.service');

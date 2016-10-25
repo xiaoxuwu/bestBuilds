@@ -15,7 +15,6 @@
 
     adminAPI.getOneUser(id)
       .then(function(data) {
-        console.log(data);
         $scope.profileInfo = data.data;
       })
       .catch(function(err) {
